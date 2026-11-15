@@ -268,16 +268,16 @@ function startApp() {
 
   const map = L.map('map', { zoomControl: false, center: CENTER, zoom: window.innerWidth >= 1000 ? 16 : 15, minZoom: 13, maxZoom: 19 });
 
-  const primaryTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    subdomains: 'abcd', maxZoom: 19, attribution: '&copy; OpenStreetMap &copy; CARTO'
+ const primaryTiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 19, attribution: '&copy; Esri &copy; OpenStreetMap'
   }).addTo(map);
 
   let fallbackLoaded = false;
   primaryTiles.on('tileerror', () => {
     if (fallbackLoaded) return;
     fallbackLoaded = true;
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19, attribution: '&copy; Esri'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '&copy; OpenStreetMap'
     }).addTo(map);
   });
 

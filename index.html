@@ -13,13 +13,14 @@
   body{font-family:Roboto,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;overflow:hidden;background:#e5e3df;color:#202124;--controls-offset:0px}
   #map{position:fixed;inset:0;width:100%;height:100vh;height:100dvh;z-index:0;background:#e5e3df}
 
+  /* ── Barra superior y buscador ── */
   #topbar{position:fixed;top:12px;left:12px;right:12px;z-index:1100;pointer-events:none}
   @media (min-width:768px){#topbar{right:auto;width:400px}}
   .search-wrap{position:relative;pointer-events:auto;z-index:20}
-  #search-form{display:flex;align-items:center;height:48px;background:#fff;border-radius:9999px;box-shadow:0 2px 10px rgba(0,0,0,.22);padding:0 16px;gap:12px}
+  #search-form{display:flex;align-items:center;height:48px;background:#fff;border-radius:9999px;box-shadow:0 2px 10px rgba(0,0,0,.22);padding:0 14px;gap:10px}
   #search-form svg{width:20px;height:20px;color:#5f6368;flex:none}
   #search-input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-size:15px;color:#202124}
-  #search-clear{flex:none;width:32px;height:32px;margin-right:-6px;border:0;border-radius:9999px;background:transparent;color:#5f6368;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  #search-clear{flex:none;width:32px;height:32px;margin-right:-4px;border:0;border-radius:9999px;background:transparent;color:#5f6368;display:flex;align-items:center;justify-content:center;cursor:pointer}
   #results{position:absolute;left:0;right:0;top:56px;background:#fff;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.22);overflow-y:auto;max-height:60vh;padding:6px 0}
   .result{display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px;text-align:left;background:transparent;border:0;cursor:pointer}
   .result:hover{background:#f1f3f4}
@@ -35,6 +36,23 @@
   .chip svg{width:15px;height:15px}
   .chip[aria-pressed="true"]{background:#e8f0fe;color:#1967d2;border-color:#d2e3fc}
 
+  /* ── HUD de navegación en vivo (estilo Waze / Google Maps) ── */
+  #nav-hud{position:fixed;top:12px;left:12px;right:12px;z-index:1150;background:#0f533a;color:#fff;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.35);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+  @media (min-width:768px){#nav-hud{left:50%;right:auto;transform:translateX(-50%);width:460px}}
+  .nav-hud-top{display:flex;align-items:center;gap:12px}
+  .nav-hud-ic{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex:none}
+  .nav-hud-ic svg{width:24px;height:24px}
+  .nav-hud-step{font-size:16px;font-weight:700;line-height:1.25}
+  .nav-hud-dest{font-size:12px;opacity:.88;margin-top:2px}
+  .nav-hud-bot{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.22);padding:8px 12px;border-radius:10px;gap:8px}
+  .nav-hud-stats{font-size:14px;font-weight:700}
+  .nav-hud-stats span{font-weight:400;opacity:.9;font-size:13px}
+  .nav-hud-btns{display:flex;gap:8px}
+  .btn-hud{border:0;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+  .btn-hud-sim{background:rgba(255,255,255,.2);color:#fff}
+  .btn-hud-stop{background:#dc2626;color:#fff}
+
+  /* ── Controles flotantes ── */
   .leaflet-bottom.leaflet-right{bottom:var(--controls-offset);transition:bottom .3s ease}
   .leaflet-touch .leaflet-bar{border:0;box-shadow:0 2px 8px rgba(0,0,0,.28);border-radius:12px;overflow:hidden}
   .leaflet-touch .leaflet-bar a{width:42px;height:42px;line-height:42px;font-size:20px;color:#3c4043}
@@ -47,6 +65,7 @@
   .fab-pill{height:36px;padding:0 14px;border-radius:9999px;font-size:12px;font-weight:600;color:#1967d2}
   .fab-pill svg{width:15px;height:15px}
 
+  /* ── Marcadores ── */
   .pin-wrap{background:none;border:0}
   .pin{position:relative;width:32px;height:40px;cursor:pointer}
   .pin-head{width:32px;height:32px;border-radius:50%;background:var(--c);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;color:#fff;transition:transform .15s}
@@ -58,15 +77,16 @@
   .show-labels .pin-label{display:block}
 
   .me-wrap{background:none;border:0}
-  .me{position:relative;width:22px;height:22px}
-  .me-core{position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#1a73e8;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45)}
-  .me-pulse{position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:rgba(26,115,232,.45);animation:me-pulse 2s ease-out infinite}
+  .me{position:relative;width:24px;height:24px}
+  .me-core{position:absolute;left:4px;top:4px;width:16px;height:16px;border-radius:50%;background:#1a73e8;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45)}
+  .me-pulse{position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:rgba(26,115,232,.45);animation:me-pulse 2s ease-out infinite}
   @keyframes me-pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(3.2);opacity:0}}
 
   .route-badge{background:none;border:0}
   .route-badge-inner{position:absolute;left:0;top:0;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:#1a73e8;color:#fff;font-size:12px;font-weight:600;padding:5px 10px;border-radius:9999px;box-shadow:0 2px 6px rgba(0,0,0,.35);border:2px solid #fff}
   .route-badge-inner svg{width:14px;height:14px}
 
+  /* ── Panel lateral / Bottom Sheet ── */
   #panel{position:fixed;z-index:1050;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.28);overflow-x:hidden;overflow-y:auto;visibility:hidden;transition:transform .3s ease,visibility 0s linear .3s}
   #panel.open{visibility:visible;transform:none;transition:transform .3s ease,visibility 0s}
   @media (min-width:768px){
@@ -74,17 +94,27 @@
     .sheet-handle{display:none}
   }
   @media (max-width:767px){
-    #panel{left:0;right:0;bottom:0;max-height:62vh;border-radius:20px 20px 0 0;transform:translateY(105%)}
-    .sheet-handle{display:block;position:absolute;top:7px;left:50%;width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.65);transform:translateX(-50%)}
+    #panel{left:0;right:0;bottom:0;max-height:68vh;border-radius:20px 20px 0 0;transform:translateY(105%)}
+    .sheet-handle{display:block;position:absolute;top:7px;left:50%;width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.85);transform:translateX(-50%);z-index:5}
   }
-  .panel-head{position:relative;color:#fff;padding:18px 16px 16px;background:var(--c)}
-  .panel-head-row{display:flex;align-items:center;gap:12px;padding-right:40px}
-  .panel-head .ic{flex:none;width:46px;height:46px;border-radius:9999px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center}
-  .panel-head .ic svg{width:22px;height:22px}
-  .panel-title{margin:0;font-size:19px;font-weight:700;line-height:1.25}
-  .panel-sub{margin:3px 0 0;font-size:13px;opacity:.92}
-  .icon-btn{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.22);color:#fff;border:0;cursor:pointer}
+
+  /* Foto de portada del lugar */
+  .place-cover{position:relative;width:100%;height:145px;background:#1e293b;overflow:hidden}
+  .place-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .place-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),rgba(0,0,0,.15))}
+  .place-cover-tag{position:absolute;left:12px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;padding:4px 9px;border-radius:6px;backdrop-filter:blur(4px)}
+  .place-cover-gmaps{position:absolute;right:12px;bottom:10px;background:#fff;color:#1a73e8;font-size:11px;font-weight:700;padding:5px 10px;border-radius:9999px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+  .place-cover-gmaps svg{width:13px;height:13px}
+
+  .panel-head{position:relative;color:#fff;padding:14px 16px;background:var(--c)}
+  .panel-head-row{display:flex;align-items:center;gap:12px;padding-right:36px}
+  .panel-head .ic{flex:none;width:42px;height:42px;border-radius:9999px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center}
+  .panel-head .ic svg{width:20px;height:20px}
+  .panel-title{margin:0;font-size:18px;font-weight:700;line-height:1.25}
+  .panel-sub{margin:2px 0 0;font-size:12px;opacity:.92}
+  .icon-btn{position:absolute;top:10px;right:10px;z-index:6;width:34px;height:34px;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);color:#fff;border:0;cursor:pointer}
   .icon-btn svg{width:18px;height:18px}
+
   .panel-sec{padding:14px 16px;border-bottom:1px solid #e8eaed}
   .route-box{display:flex;gap:12px}
   .route-dots{display:flex;flex-direction:column;align-items:center;padding:12px 0}
@@ -92,19 +122,27 @@
   .dot-line{flex:1;border-left:2px dotted #bdc1c6;margin:4px 0}
   .route-dots svg{width:16px;height:16px;color:#d93025}
   .route-inputs{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
-  .dest-box{height:40px;display:flex;align-items:center;padding:0 12px;border-radius:10px;background:#f1f3f4;font-size:14px;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .select{width:100%;height:40px;border:1px solid #dadce0;border-radius:10px;padding:0 10px;background:#fff;font-size:14px;color:#202124}
+  .dest-box{height:38px;display:flex;align-items:center;padding:0 12px;border-radius:10px;background:#f1f3f4;font-size:14px;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .select{width:100%;height:38px;border:1px solid #dadce0;border-radius:10px;padding:0 10px;background:#fff;font-size:14px;color:#202124}
   .hint{font-size:12px;color:#5f6368;margin:8px 0 0}
+
   .btn-primary{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:42px;margin-top:12px;border-radius:9999px;background:#1a73e8;color:#fff;font-weight:600;font-size:14px;border:0;cursor:pointer}
-  .btn-primary svg{width:17px;height:17px}
-  .btn-link{color:#1a73e8;font-weight:600;font-size:13px;background:none;border:0;padding:0;cursor:pointer}
-  .route-card{margin-top:12px;display:flex;align-items:center;gap:12px;border-radius:12px;background:#e8f0fe;padding:12px}
+  .btn-primary svg,.btn-live svg,.btn-ext svg{width:16px;height:16px}
+  .btn-live{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:40px;margin-top:8px;border-radius:9999px;background:#137333;color:#fff;font-weight:700;font-size:13px;border:0;cursor:pointer}
+  .ext-apps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .btn-ext{display:flex;align-items:center;justify-content:center;gap:6px;height:36px;border-radius:10px;background:#f1f3f4;color:#202124;font-size:12px;font-weight:600;text-decoration:none;border:1px solid #dadce0}
+  .btn-ext:hover{background:#e8eaed}
+
+  .btn-link{color:#1a73e8;font-weight:600;font-size:13px;background:none;border:0;padding:0;cursor:pointer;text-decoration:none}
+  .route-card{margin-top:12px;border-radius:12px;background:#e8f0fe;padding:12px}
+  .route-card-top{display:flex;align-items:center;gap:12px}
   .route-card-ic{flex:none;width:38px;height:38px;border-radius:9999px;background:#fff;color:#1a73e8;display:flex;align-items:center;justify-content:center}
   .route-card-ic svg{width:19px;height:19px}
   .route-card-main{flex:1;min-width:0}
   .route-card-time{font-size:17px;font-weight:700;color:#202124}
   .route-card-time span{font-size:13px;font-weight:400;color:#5f6368}
   .route-card-sub{font-size:11px;color:#5f6368;margin-top:2px}
+
   .badges{display:flex;flex-wrap:wrap;gap:8px}
   .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:9999px;font-size:12px;font-weight:600}
   .badge svg{width:14px;height:14px;flex:none}
@@ -117,7 +155,7 @@
   .banner-note{margin:4px 16px 12px;display:flex;gap:10px;border-radius:12px;background:#fef7e0;padding:12px;font-size:13px;color:#7a4100;line-height:1.4}
   .banner-note svg{width:18px;height:18px;flex:none;margin-top:1px}
   .panel-foot{padding:4px 16px 16px;font-size:11px;color:#80868b;margin:0}
-  #toast{position:fixed;left:50%;top:112px;z-index:1200;max-width:min(90vw,420px);transform:translate(-50%,-16px);opacity:0;pointer-events:none;background:#202124;color:#fff;font-size:13px;padding:10px 16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:opacity .25s,transform .25s;text-align:center}
+  #toast{position:fixed;left:50%;top:112px;z-index:1250;max-width:min(90vw,420px);transform:translate(-50%,-16px);opacity:0;pointer-events:none;background:#202124;color:#fff;font-size:13px;padding:10px 16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:opacity .25s,transform .25s;text-align:center}
   #toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
@@ -125,10 +163,28 @@
 
 <div id="map"></div>
 
+<!-- HUD de navegación en vivo (Waze / Maps) -->
+<div id="nav-hud" hidden>
+  <div class="nav-hud-top">
+    <div class="nav-hud-ic" id="hud-icon"></div>
+    <div style="min-width:0;flex:1">
+      <div class="nav-hud-step" id="hud-step">Sigue el sendero marcado</div>
+      <div class="nav-hud-dest" id="hud-dest">Destino</div>
+    </div>
+  </div>
+  <div class="nav-hud-bot">
+    <div class="nav-hud-stats" id="hud-stats">0 min <span>· 0 m</span></div>
+    <div class="nav-hud-btns">
+      <button type="button" class="btn-hud btn-hud-sim" id="btn-sim-walk">Simular caminata</button>
+      <button type="button" class="btn-hud btn-hud-stop" id="btn-stop-nav">Finalizar</button>
+    </div>
+  </div>
+</div>
+
 <div id="topbar">
   <div class="search-wrap">
     <form id="search-form" role="search" autocomplete="off">
-      <img src="logo.png" alt="Logo" style="height:28px;width:auto;border-radius:6px;flex:none;">
+      <img src="logo.png" alt="Logo" onerror="this.style.display='none'" style="height:28px;width:auto;border-radius:6px;flex:none;">
       <span id="ic-search"></span>
       <input id="search-input" type="text" placeholder="Busca edificios, comida, porterías…" aria-label="Buscar lugares">
       <button type="button" id="search-clear" hidden aria-label="Borrar búsqueda"></button>
@@ -142,11 +198,6 @@
 <div id="toast" role="status"></div>
 
 <script>
-window.onerror = function(msg, url, line) {
-  var m = document.getElementById('map');
-  if (m) m.innerHTML = '<div style="padding:120px 20px;text-align:center;color:#b91c1c;font-weight:600;">Error de carga: ' + msg + ' (línea ' + line + ')</div>';
-};
-
 function startApp() {
   const ICONS = {
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
@@ -165,12 +216,13 @@ function startApp() {
     access: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1M5 8l3-3 5.5 3-2.36 3.5M4.24 14.5a5 5 0 0 0 6.88 6M13.76 17.5a5 5 0 0 0-6.88-6"/></svg>',
     money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>',
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
-    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>'
   };
   const svg = n => ICONS[n] || '';
 
-  const CENTER = [4.6372, -74.0842];
-  const PLAZA_CHE = { lat: 4.6362, lng: -74.0830 };
+  const CENTER = [4.6355, -74.0835];
+  const PLAZA_CHE = { lat: 4.634903, lng: -74.081902 };
   const WALK_KMH = 5;
   const LABEL_ZOOM = 17;
   const PRICE_REST = '$15.000 - $30.000 COP';
@@ -200,61 +252,58 @@ function startApp() {
   const H_PORT = 'Todos los días: 5:30 a. m. – 10:00 p. m.';
   const H_TM   = 'Todos los días: 4:30 a. m. – 11:00 p. m.';
 
+  // Puedes pegar en "photo" cualquier URL directa de imagen de Google Maps
   const PLACES = [
-    // A. Edificios académicos
     { id: 'edif-225', type: 'edificio', name: 'Edificio Rogelio Salmona (Posgrados)', short: 'Ed. 225 Salmona', code: 'Edificio 225 · Posgrados',
-      lat: 4.633845, lng: -74.086373, wifi: true, access: true, hours: H_EDIF,
+      lat: 4.633845, lng: -74.086373, wifi: true, access: true, hours: H_EDIF, photo: 'https://agenciadenoticias.unal.edu.co/fileadmin/Agencia_de_Noticias/Imagenes/2026/02-febrero/547/AgenciaUNAL-090226-01.jpg',
       desc: 'Edificio de Posgrados de Ciencias Humanas. Arquitectura icónica en ladrillo.',
       keywords: ['posgrados', 'ciencias humanas', 'ladrillo', 'salmona', '225'] },
     { id: 'edif-228', type: 'edificio', name: 'Nuevo Edificio de Enfermería', short: 'Ed. 228 Enfermería', code: 'Edificio 228',
-      lat: 4.635443, lng: -74.084831, wifi: true, access: true, hours: H_EDIF,
+      lat: 4.635443, lng: -74.084831, wifi: true, access: true, hours: H_EDIF, photo: 'https://www.artchitectours.es/wp-content/uploads/2019/10/Bogot%C3%A1-universidad-nacional-salmona-02.jpg',
       desc: 'Sede de la Facultad de Enfermería, con aulas y laboratorios modernos.',
       keywords: ['facultad', 'laboratorios', 'aulas', '228'] },
     { id: 'edif-564', type: 'edificio', name: 'Edificio Gloria Galeano', short: 'Ed. 564 Gloria Galeano', code: 'Edificio 564',
-      lat: 4.636428, lng: -74.086760, wifi: true, access: true, hours: H_EDIF,
+      lat: 4.636428, lng: -74.086760, wifi: true, access: true, hours: H_EDIF, photo: 'https://agenciadenoticias.unal.edu.co/fileadmin/Agencia_de_Noticias/Imagenes/2021/06-Junio/097/4.jpg',
       desc: 'Edificio académico y de investigación dentro del campus.',
       keywords: ['gloria galeano', '564', 'ciencias', 'biologia'] },
     { id: 'edif-610', type: 'edificio', name: 'Edificio de Ciencia Política y Derecho', short: 'Ed. 610 Ciencia Política', code: 'Edificio 610',
-      lat: 4.637809, lng: -74.080092, wifi: true, access: true, hours: H_EDIF,
+      lat: 4.637809, lng: -74.080092, wifi: true, access: true, hours: H_EDIF, photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBeX7s8X8NniaunnD_hCTlbbsnsjAQJAkwAiK8rXvPebPjjapkHqKfQxU&s=10',
       desc: 'Aulas, auditorios y oficinas administrativas de Ciencia Política y Derecho.',
       keywords: ['derecho', 'politica', 'auditorios', 'oficinas', '610'] },
 
-    // B. Gastronomía y puntos comerciales
     { id: 'rolons', type: 'restaurante', name: 'Restaurante Rolons', short: 'Rolons', code: 'Sector Calle 26 · Externo',
-      lat: 4.631845, lng: -74.083622, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:00 p. m.',
+      lat: 4.631845, lng: -74.083622, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:00 p. m.', photo: 'https://lh3.googleusercontent.com/gps-cs-s/ANWiy9R4F5o9oxc1CduT1A9yTya20fpm9ACM5npHtxnC9_UQmtLfldTaeALdJgQVb5hGufdNJEjTnDaFb0bdSNEeLGIk1p4_AqHQ7WJM9GNGr_4T0Fvj2Y3xOUHnAFa1by4wBGq24dQ=s680-w680-h510-rw',
       desc: 'Restaurante tradicional en la zona externa cercana a la portería de la Calle 26.',
       keywords: ['almuerzo', 'comida', 'calle 26'] },
     { id: 'la-vecina', type: 'restaurante', name: 'Restaurante La Vecina', short: 'La Vecina', code: 'Sector Oriental · Externo',
-      lat: 4.634457, lng: -74.078858, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:30 p. m.',
+      lat: 4.634457, lng: -74.078858, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:30 p. m.', photo: 'https://lh3.googleusercontent.com/grass-cs/AABkmLfUSnDjW3KMRNeY-pWRBWqNcWmsH56qlc13apHF0Q2UJPxIGHVND3fsrIc0meJp-LHa9zV--_f-5p_Z9pBissny-lsemslr2qNAKq2sy2I3RomEdVHD05o41EI_tk0Zy9grOcTp3g=w408-h306-k-no',
       desc: 'Opción clásica de almuerzos en la zona comercial aledaña al costado oriental.',
       keywords: ['almuerzo', 'comida', 'belalcazar'] },
     { id: 'punto-26', type: 'restaurante', name: 'Punto 26', short: 'Punto 26', code: 'Zona Comercial · Calle 26',
-      lat: 4.630554, lng: -74.083682, price: PRICE_REST, hours: 'Lun – Sáb: 8:00 a. m. – 7:00 p. m.',
+      lat: 4.630554, lng: -74.083682, price: PRICE_REST, hours: 'Lun – Sáb: 8:00 a. m. – 7:00 p. m.', photo: 'https://lh3.googleusercontent.com/grass-cs/AABkmLc2n-JphUaRtTcgSP49CQfNiVR7Ift-GR2oGAdKY2leGBjggxE1IVg0xyU0LgYEPGkccQkWMbyrvdbTZhDG2bo7jsQpunmPjZnPHOwR6fasKxmMC5O94M-I2Gtgoq4qsx5Mjd1L=w163-h156-n-k-no',
       desc: 'Punto de encuentro, comidas y servicios ubicado sobre el sector de la Calle 26.',
       keywords: ['punto 26', 'calle 26', 'comida', 'almuerzo', 'comercio'] },
     { id: 'chazas', type: 'chaza', name: 'Zona de Chazas (Plaza Che)', short: 'Chazas · Plaza Che', code: 'Corredores internos y Plaza Central',
-      lat: 4.634903, lng: -74.081902, wifi: true, price: 'Precios económicos', hours: 'Lun – Vie: 7:00 a. m. – 6:00 p. m. (varía según el puesto)',
+      lat: 4.634903, lng: -74.081902, wifi: true, price: 'Precios económicos', hours: 'Lun – Vie: 7:00 a. m. – 6:00 p. m. (varía según el puesto)', photo: '',
       desc: 'Puestos estudiantiles tradicionales dentro del campus. Variedad de snacks, café, almuerzos rápidos y artículos varios.',
       banner: 'Recuerda: existen múltiples chazas distribuidas en todos los corredores del campus, no solo en la Plaza Che.',
       keywords: ['plaza che', 'snacks', 'cafe', 'almuerzo', 'comida', 'economico'] },
 
-    // C. Porterías activas
     { id: 'ent-26', type: 'porteria', name: 'Entrada Calle 26', short: 'Portería Calle 26', code: 'Portería Sur · Av. El Dorado',
-      lat: 4.632385, lng: -74.084032, hours: H_PORT,
+      lat: 4.632385, lng: -74.084032, hours: H_PORT, photo: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Univ._Nacional_de_Colombia_-_Entrada_Calle_26.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original',
       desc: 'Acceso peatonal y vehicular sur con conexión directa a la Av. El Dorado.',
       keywords: ['el dorado', 'sur', 'vehicular', 'peatonal'] },
     { id: 'ent-30', type: 'porteria', name: 'Entrada Carrera 30 (NQS)', short: 'Portería Cra. 30', code: 'Portería Oriental · Av. NQS',
-      lat: 4.634837, lng: -74.080119, hours: H_PORT,
+      lat: 4.634837, lng: -74.080119, hours: H_PORT, photo: 'https://estaticos.elcolombiano.com/documents/10157/0/640x280/0c0/0d0/none/11101/MYDJ/universidad-nacional-640x280-14032103.jpg',
       desc: 'Acceso peatonal oriental sobre la Av. NQS.',
       keywords: ['nqs', 'oriental', 'peatonal', 'avenida'] },
 
-    // D. Estaciones de TransMilenio
     { id: 'tm-cu', type: 'transmilenio', name: 'Estación Ciudad Universitaria', short: 'TM Ciudad Univ.', code: 'Troncal Calle 26',
-      lat: 4.631706, lng: -74.084099, hours: H_TM,
+      lat: 4.631706, lng: -74.084099, hours: H_TM, photo: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Bogot%C3%A1_-_Ciudad_Universitaria_estaci%C3%B3n_TransMilenio.JPG?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original',
       desc: 'Estación sobre el separador de la Av. El Dorado, ideal para ingresar por la portería de la Calle 26.',
       keywords: ['calle 26', 'troncal', 'el dorado'] },
     { id: 'tm-un', type: 'transmilenio', name: 'Estación Universidad Nacional', short: 'TM Univ. Nacional', code: 'Troncal NQS / Carrera 30',
-      lat: 4.635435, lng: -74.079373, hours: H_TM,
+      lat: 4.635435, lng: -74.079373, hours: H_TM, photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_lVuY1lYpOcDW-LY22SVDx-CNtNCPutvPDMjYPmBulNZLu4Q8JfMKTcQA&s=10',
       desc: 'Estación sobre el separador de la Av. NQS, ideal para ingresar por la portería de la Carrera 30.',
       keywords: ['nqs', 'carrera 30', 'troncal'] }
   ];
@@ -268,19 +317,38 @@ function startApp() {
   const fmtTime = min => min < 60 ? `${min} min` : `${Math.floor(min / 60)} h ${min % 60} min`;
   const subtitle = p => [p.code, CATS[p.type].label].filter(Boolean).join(' · ');
 
+  // Enlaces oficiales a Google Maps y Waze
+  const gmapsPlaceUrl = p => `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`;
+  const gmapsDirUrl = p => `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}&travelmode=walking`;
+  const wazeUrl = p => `https://waze.com/ul?ll=${p.lat},${p.lng}&navigate=yes`;
+
+  // Vista satelital exacta como portada si no hay foto manual
+  function satTileUrl(lat, lng, z = 18) {
+    const n = Math.pow(2, z);
+    const x = Math.floor((lng + 180) / 360 * n);
+    const rad = lat * Math.PI / 180;
+    const y = Math.floor((1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) / 2 * n);
+    return `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}`;
+  }
+
   const byId = Object.fromEntries(PLACES.map(p => [p.id, p]));
   PLACES.forEach(p => { p._hay = norm([p.name, p.code, CATS[p.type].label, GROUP_TERMS[p.type], (p.keywords || []).join(' ')].join(' ')); });
   const ORIGIN_PLACES = PLACES.filter(p => p.type === 'porteria' || p.type === 'transmilenio');
 
-  const state = { filter: 'todos', query: '', selectedId: null, originKey: 'me', me: null, simulated: false, watchId: null, pendingRoute: false, route: null };
+  const state = {
+    filter: 'todos', query: '', selectedId: null, originKey: 'me',
+    me: null, simulated: false, watchId: null, pendingRoute: false,
+    route: null, navActive: false, simWalkTimer: null
+  };
 
   const panel = $('#panel'), panelBody = $('#panel-body'), input = $('#search-input'), clearBtn = $('#search-clear'), resultsEl = $('#results'), chipsEl = $('#chips');
   $('#ic-search').innerHTML = svg('search');
   clearBtn.innerHTML = svg('x');
+  $('#hud-icon').innerHTML = svg('nav');
 
   const map = L.map('map', { zoomControl: false, center: CENTER, zoom: window.innerWidth >= 1000 ? 16 : 15, minZoom: 13, maxZoom: 19 });
 
- const primaryTiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+  const primaryTiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
     maxZoom: 19, attribution: '&copy; Esri &copy; OpenStreetMap'
   }).addTo(map);
 
@@ -288,9 +356,7 @@ function startApp() {
   primaryTiles.on('tileerror', () => {
     if (fallbackLoaded) return;
     fallbackLoaded = true;
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19, attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
   });
 
   L.control.zoom({ position: 'bottomright', zoomInTitle: 'Acercar', zoomOutTitle: 'Alejar' }).addTo(map);
@@ -319,7 +385,7 @@ function startApp() {
       iconSize: [32, 40], iconAnchor: [16, 40]
     });
     const m = L.marker([p.lat, p.lng], { icon, title: p.name, riseOnHover: true });
-    m.on('click', () => selectPlace(p.id));
+    m.on('click', () => { if (!state.navActive) selectPlace(p.id); });
     markers[p.id] = m;
   });
 
@@ -350,7 +416,7 @@ function startApp() {
   function syncLabels() { map.getContainer().classList.toggle('show-labels', map.getZoom() >= LABEL_ZOOM); }
   map.on('zoomend', syncLabels);
 
-  function panelHeight() { return panel.classList.contains('open') ? Math.min(panel.offsetHeight, window.innerHeight * 0.62) : 0; }
+  function panelHeight() { return panel.classList.contains('open') ? Math.min(panel.offsetHeight, window.innerHeight * 0.68) : 0; }
   function focusOn(ll, minZoom = 17) {
     const z = Math.max(map.getZoom(), minZoom), pt = map.project(L.latLng(ll.lat, ll.lng), z);
     const target = panel.classList.contains('open') ? (isDesktop() ? pt.subtract([200, 0]) : pt.add([0, Math.max(0, panelHeight() - 112) / 2])) : pt;
@@ -396,7 +462,7 @@ function startApp() {
   }
   window.addEventListener('resize', updateOffsets);
 
-  const meLabel = () => state.me ? (state.simulated ? 'Mi ubicación (simulada · Plaza Che)' : 'Mi ubicación') : 'Mi ubicación';
+  const meLabel = () => state.me ? (state.simulated ? 'Mi ubicación (simulada · Plaza Che)' : 'Mi ubicación en tiempo real') : 'Mi ubicación GPS';
   function originSelectHTML(p) {
     const opt = pl => `<option value="${pl.id}"${state.originKey === pl.id ? ' selected' : ''}${pl.id === p.id ? ' disabled' : ''}>${esc(pl.name)}</option>`;
     return `<select id="origin-select" class="select"><option value="me"${state.originKey === 'me' ? ' selected' : ''}>${esc(meLabel())}</option><optgroup label="Porterías">${ORIGIN_PLACES.filter(x => x.type === 'porteria').map(opt).join('')}</optgroup><optgroup label="Estaciones de TransMilenio">${ORIGIN_PLACES.filter(x => x.type === 'transmilenio').map(opt).join('')}</optgroup></select>`;
@@ -408,21 +474,58 @@ function startApp() {
     if (p.wifi) badges.push(`<span class="badge badge-blue">${svg('wifi')}Wi-Fi: <b>UNAL</b></span>`);
     if (p.access) badges.push(`<span class="badge badge-green">${svg('access')}Accesibilidad universal</span>`);
     if (p.price) badges.push(`<span class="badge badge-amber">${svg('money')}${esc(p.price)}</span>`);
-    const rows = [infoRow('info', esc(p.desc))];
-    if (p.access) rows.push(infoRow('access', 'Todos los edificios del campus cuentan con rampas y ascensores.'));
-    rows.push(infoRow('clock', esc(p.hours)), infoRow('pin', `${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}`));
 
-    return `<div class="panel-head" style="--c:${c.color}"><span class="sheet-handle"></span><button type="button" class="icon-btn" data-action="close">${svg('x')}</button><div class="panel-head-row"><span class="ic">${svg(c.icon)}</span><div style="min-width:0"><h2 class="panel-title">${esc(p.name)}</h2><p class="panel-sub">${esc(subtitle(p))}</p></div></div></div>
-      <section class="panel-sec"><div class="route-box"><div class="route-dots"><span class="dot-origin"></span><span class="dot-line"></span>${svg('pin')}</div><div class="route-inputs"><div>${originSelectHTML(p)}</div><div class="dest-box">${esc(p.name)}</div></div></div><p id="origin-hint" class="hint" hidden></p><button type="button" class="btn-primary" data-action="route">${svg('nav')}Cómo llegar</button><div id="route-result"></div></section>
+    const coverSrc = p.photo && p.photo.trim() ? esc(p.photo.trim()) : satTileUrl(p.lat, p.lng, 18);
+    const satFallback = satTileUrl(p.lat, p.lng, 17);
+    const coverLabel = p.photo && p.photo.trim() ? 'Foto del lugar' : 'Vista aérea · Campus UNAL';
+
+    const rows = [
+      infoRow('info', esc(p.desc)),
+      infoRow('clock', esc(p.hours)),
+      infoRow('pin', `${p.lat.toFixed(5)}, ${p.lng.toFixed(5)} · <a href="${gmapsPlaceUrl(p)}" target="_blank" rel="noopener" class="btn-link">Abrir en Google Maps ↗</a>`)
+    ];
+    if (p.access) rows.splice(1, 0, infoRow('access', 'Cuenta con rampas y ascensores de acceso universal.'));
+
+    return `
+      <div class="place-cover">
+        <span class="sheet-handle"></span>
+        <button type="button" class="icon-btn" data-action="close" aria-label="Cerrar">${svg('x')}</button>
+        <img src="${coverSrc}" alt="${esc(p.name)}" onerror="if(this.src!=='${satFallback}')this.src='${satFallback}'">
+        <div class="place-cover-overlay"></div>
+        <span class="place-cover-tag">${coverLabel}</span>
+        <a href="${gmapsPlaceUrl(p)}" target="_blank" rel="noopener" class="place-cover-gmaps">${svg('ext')}Google Maps</a>
+      </div>
+
+      <div class="panel-head" style="--c:${c.color}">
+        <div class="panel-head-row">
+          <span class="ic">${svg(c.icon)}</span>
+          <div style="min-width:0"><h2 class="panel-title">${esc(p.name)}</h2><p class="panel-sub">${esc(subtitle(p))}</p></div>
+        </div>
+      </div>
+
+      <section class="panel-sec">
+        <div class="route-box">
+          <div class="route-dots"><span class="dot-origin"></span><span class="dot-line"></span>${svg('pin')}</div>
+          <div class="route-inputs"><div>${originSelectHTML(p)}</div><div class="dest-box">${esc(p.name)}</div></div>
+        </div>
+        <p id="origin-hint" class="hint" hidden></p>
+        <button type="button" class="btn-primary" data-action="route">${svg('nav')}Cómo llegar (ruta peatonal)</button>
+        <div id="route-result"></div>
+        <div class="ext-apps">
+          <a href="${gmapsDirUrl(p)}" target="_blank" rel="noopener" class="btn-ext">${svg('ext')}Google Maps</a>
+          <a href="${wazeUrl(p)}" target="_blank" rel="noopener" class="btn-ext">${svg('ext')}Waze</a>
+        </div>
+      </section>
+
       ${badges.length ? `<section class="panel-sec"><div class="badges">${badges.join('')}</div></section>` : ''}
       <section class="info-list">${rows.join('')}</section>
       ${p.banner ? `<div class="banner-note">${svg('info')}<div>${esc(p.banner)}</div></div>` : ''}
-      <p class="panel-foot">Horarios y precios de referencia; confírmalos directamente con cada lugar.</p>`;
+      <p class="panel-foot">Horarios y tiempos aproximados de caminata dentro del campus.</p>`;
   }
 
   function renderPanel(p) { panelBody.innerHTML = panelHTML(p); updateOriginHint(); showRouteResult(); }
   function openPanel() { panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); panel.scrollTop = 0; updateOffsets(); }
-  function closePanel() { panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); clearRoute(); state.selectedId = null; renderMarkers(); updateOffsets(); }
+  function closePanel() { stopLiveNav(); panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); clearRoute(); state.selectedId = null; renderMarkers(); updateOffsets(); }
   function selectPlace(id) {
     const p = byId[id]; if (!p) return;
     if (state.selectedId && state.selectedId !== id) clearRoute();
@@ -434,6 +537,7 @@ function startApp() {
     const b = e.target.closest('[data-action]'); if (!b) return;
     if (b.dataset.action === 'close') closePanel();
     if (b.dataset.action === 'route') requestRoute();
+    if (b.dataset.action === 'start-nav') startLiveNav();
     if (b.dataset.action === 'clear-route') clearRoute();
     if (b.dataset.action === 'simulate') simulateLocation();
   });
@@ -443,45 +547,173 @@ function startApp() {
 
   function updateOriginHint() {
     const el = $('#origin-hint'); if (!el) return;
-    if (state.originKey === 'me' && !state.me) { el.hidden = false; el.innerHTML = 'Se pedirá tu GPS al pulsar «Cómo llegar», o <button type="button" class="btn-link" data-action="simulate">simula estar en Plaza Che</button>.'; }
+    if (state.originKey === 'me' && !state.me) { el.hidden = false; el.innerHTML = 'Activa tu GPS al pulsar «Cómo llegar», o <button type="button" class="btn-link" data-action="simulate">simula estar en Plaza Che</button>.'; }
     else if (state.originKey === 'me' && state.simulated) { el.hidden = false; el.textContent = 'Usando ubicación simulada en Plaza Che.'; }
     else el.hidden = true;
   }
 
+  /* ═════════════ Enrutamiento peatonal real (OSRM + respaldo) ═════════════ */
   function originLatLng(key) { return key === 'me' ? (state.me ? [state.me.lat, state.me.lng] : null) : (byId[key] ? [byId[key].lat, byId[key].lng] : null); }
+
+  async function fetchWalkingRoute(o, d) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4500);
+    try {
+      const url = `https://router.project-osrm.org/route/v1/foot/${o[1]},${o[0]};${d[1]},${d[0]}?overview=full&geometries=geojson&steps=true`;
+      const res = await fetch(url, { signal: ctrl.signal });
+      clearTimeout(timer);
+      if (!res.ok) throw new Error('OSRM error');
+      const data = await res.json();
+      if (!data.routes || !data.routes.length) throw new Error('No route');
+      const r = data.routes[0];
+      const coords = r.geometry.coordinates.map(c => [c[1], c[0]]);
+      const steps = (r.legs[0]?.steps || []).map(s => formatStep(s));
+      return { coords, dist: r.distance, mins: Math.max(1, Math.round(r.distance / (WALK_KMH * 1000 / 60))), steps, isPath: true };
+    } catch (_) {
+      clearTimeout(timer);
+      const dist = map.distance(o, d);
+      return { coords: [o, d], dist, mins: walkMinutes(dist), steps: ['Dirígete hacia el destino marcado'], isPath: false };
+    }
+  }
+
+  function formatStep(s) {
+    const t = s.maneuver?.type || '';
+    const m = s.maneuver?.modifier || '';
+    if (t === 'arrive') return 'Has llegado a tu destino';
+    if (t === 'depart') return 'Inicia el recorrido por el sendero';
+    if (m.includes('left')) return 'Gira a la izquierda';
+    if (m.includes('right')) return 'Gira a la derecha';
+    return 'Continúa recto por el sendero';
+  }
+
   function requestRoute() {
     const dest = byId[state.selectedId]; if (!dest) return;
-    if (state.originKey === 'me' && !state.me) { state.pendingRoute = true; toast('Buscando tu ubicación…', 2500); startLocate({ recenter: false }); return; }
+    if (state.originKey === 'me' && !state.me) { state.pendingRoute = true; toast('Buscando tu ubicación GPS…', 2500); startLocate({ recenter: false }); return; }
     traceRoute({ fit: true });
   }
-  function traceRoute({ fit = true } = {}) {
+
+  async function traceRoute({ fit = true } = {}) {
     const dest = byId[state.selectedId], o = originLatLng(state.originKey); if (!dest || !o) return;
-    const d = [dest.lat, dest.lng], dist = map.distance(o, d);
+    const d = [dest.lat, dest.lng];
+    const directDist = map.distance(o, d);
+    if (directDist < 12) {
+      if (state.navActive) { toast(`¡Has llegado a ${dest.name}!`, 5000); stopLiveNav(); }
+      else toast('Ya estás en el destino.');
+      routeLayer.clearLayers(); state.route = null; showRouteResult(); return;
+    }
+
+    const r = await fetchWalkingRoute(o, d);
     routeLayer.clearLayers();
-    if (dist < 3) { state.route = null; showRouteResult(); toast('Ya estás en el destino.'); return; }
-    const mins = walkMinutes(dist);
-    L.polyline([o, d], { color: '#ffffff', weight: 10, opacity: 0.95, lineCap: 'round', interactive: false }).addTo(routeLayer);
-    L.polyline([o, d], { color: '#1a73e8', weight: 6, opacity: 1, lineCap: 'round', interactive: false }).addTo(routeLayer);
+
+    L.polyline(r.coords, { color: '#ffffff', weight: 10, opacity: 0.95, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(routeLayer);
+    L.polyline(r.coords, { color: '#1a73e8', weight: 6, opacity: 1, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(routeLayer);
     L.circleMarker(o, { radius: 7, color: '#1a73e8', weight: 3, fillColor: '#ffffff', fillOpacity: 1, interactive: false }).addTo(routeLayer);
-    L.marker([(o[0] + d[0]) / 2, (o[1] + d[1]) / 2], {
-      icon: L.divIcon({ className: 'route-badge', html: `<div class="route-badge-inner">${svg('walk')}${fmtTime(mins)} · ${fmtDist(dist)}</div>`, iconSize: [0, 0], iconAnchor: [0, 0] }),
+
+    const mid = r.coords[Math.floor(r.coords.length / 2)];
+    L.marker(mid, {
+      icon: L.divIcon({ className: 'route-badge', html: `<div class="route-badge-inner">${svg('walk')}${fmtTime(r.mins)} · ${fmtDist(r.dist)}</div>`, iconSize: [0, 0], iconAnchor: [0, 0] }),
       interactive: false, zIndexOffset: 500
     }).addTo(routeLayer);
-    state.route = { dist, mins }; showRouteResult(); if (fit) fitPoints([o, d]);
+
+    state.route = r;
+    showRouteResult();
+    updateNavHud();
+    if (fit && !state.navActive) fitPoints(r.coords);
   }
+
   function showRouteResult() {
     const el = $('#route-result'); if (!el) return;
     if (!state.route) { el.innerHTML = ''; return; }
-    el.innerHTML = `<div class="route-card"><span class="route-card-ic">${svg('walk')}</span><div class="route-card-main"><div class="route-card-time">${fmtTime(state.route.mins)} <span>· ${fmtDist(state.route.dist)}</span></div><div class="route-card-sub">A pie a ${WALK_KMH} km/h · distancia aproximada</div></div><button type="button" class="btn-link" data-action="clear-route">Quitar</button></div>`;
+    const kind = state.route.isPath ? 'Por senderos peatonales' : 'Distancia aproximada';
+    el.innerHTML = `<div class="route-card">
+      <div class="route-card-top">
+        <span class="route-card-ic">${svg('walk')}</span>
+        <div class="route-card-main">
+          <div class="route-card-time">${fmtTime(state.route.mins)} <span>· ${fmtDist(state.route.dist)}</span></div>
+          <div class="route-card-sub">${kind} · a ${WALK_KMH} km/h</div>
+        </div>
+        <button type="button" class="btn-link" data-action="clear-route">Quitar</button>
+      </div>
+      <button type="button" class="btn-live" data-action="start-nav">${svg('nav')}Iniciar navegación en vivo</button>
+    </div>`;
   }
+
   function clearRoute() { routeLayer.clearLayers(); state.route = null; state.pendingRoute = false; showRouteResult(); }
 
+  /* ═════════════ Modo navegación en vivo (tipo Waze) ═════════════ */
+  function startLiveNav() {
+    const dest = byId[state.selectedId];
+    if (!dest || !state.route) return;
+    state.navActive = true;
+    state.originKey = 'me';
+    $('#topbar').hidden = true;
+    $('#nav-hud').hidden = false;
+    panel.classList.remove('open');
+    updateOffsets();
+    updateNavHud();
+
+    if (!state.me) {
+      simulateLocation();
+    } else {
+      map.flyTo([state.me.lat, state.me.lng], 18, { duration: 0.6 });
+    }
+    if (!state.simulated && state.watchId === null) startLocate({ recenter: true });
+    toast('Navegación en vivo activada', 2500);
+  }
+
+  function stopLiveNav() {
+    state.navActive = false;
+    if (state.simWalkTimer) { clearInterval(state.simWalkTimer); state.simWalkTimer = null; }
+    $('#nav-hud').hidden = true;
+    $('#topbar').hidden = false;
+    if (state.selectedId && byId[state.selectedId]) openPanel();
+  }
+
+  function updateNavHud() {
+    if (!state.navActive || !state.route) return;
+    const dest = byId[state.selectedId];
+    $('#hud-step').textContent = state.route.steps[0] || 'Sigue el sendero marcado';
+    $('#hud-dest').textContent = `Hacia ${dest ? dest.name : 'destino'}`;
+    $('#hud-stats').innerHTML = `${fmtTime(state.route.mins)} <span>· ${fmtDist(state.route.dist)} restantes</span>`;
+  }
+
+  $('#btn-stop-nav').addEventListener('click', stopLiveNav);
+
+  // Simulador de caminata paso a paso para probar el modo Waze en vivo
+  $('#btn-sim-walk').addEventListener('click', () => {
+    if (state.simWalkTimer) {
+      clearInterval(state.simWalkTimer); state.simWalkTimer = null;
+      $('#btn-sim-walk').textContent = 'Simular caminata';
+      return;
+    }
+    if (!state.route || state.route.coords.length < 2) return;
+    stopWatch();
+    state.simulated = true;
+    $('#btn-sim-walk').textContent = 'Pausar simulación';
+    const path = [...state.route.coords];
+    let idx = 0;
+    state.simWalkTimer = setInterval(() => {
+      idx++;
+      if (idx >= path.length) {
+        clearInterval(state.simWalkTimer); state.simWalkTimer = null;
+        $('#btn-sim-walk').textContent = 'Simular caminata';
+        const dest = byId[state.selectedId];
+        toast(`¡Has llegado a ${dest ? dest.name : 'tu destino'}!`, 4500);
+        stopLiveNav();
+        return;
+      }
+      setMe({ lat: path[idx][0], lng: path[idx][1] });
+      map.panTo([path[idx][0], path[idx][1]], { animate: true, duration: 0.8 });
+    }, 1200);
+  });
+
+  /* ═════════════ Geolocalización ═════════════ */
   let meMarker = null;
   function setMe(ll) {
     state.me = { lat: ll.lat, lng: ll.lng };
     if (!meMarker) {
       meMarker = L.marker([ll.lat, ll.lng], {
-        icon: L.divIcon({ className: 'me-wrap', html: '<div class="me"><span class="me-pulse"></span><span class="me-core"></span></div>', iconSize: [22, 22], iconAnchor: [11, 11] }),
+        icon: L.divIcon({ className: 'me-wrap', html: '<div class="me"><span class="me-pulse"></span><span class="me-core"></span></div>', iconSize: [24, 24], iconAnchor: [12, 12] }),
         interactive: false, zIndexOffset: 2000
       }).addTo(meLayer);
     } else meMarker.setLatLng([ll.lat, ll.lng]);
@@ -494,32 +726,53 @@ function startApp() {
   function startLocate({ recenter = true } = {}) {
     if (!('geolocation' in navigator)) { state.pendingRoute = false; toast('Tu navegador no soporta GPS. Usa «Simular en Plaza Che».'); return; }
     state.simulated = false;
-    if (state.watchId !== null) { if (state.me && recenter) focusOn(state.me, 17); return; }
+    if (state.watchId !== null) { if (state.me && recenter) focusOn(state.me, 18); return; }
     let first = true;
     state.watchId = navigator.geolocation.watchPosition(pos => {
       setMe({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+      if (state.navActive) map.panTo([pos.coords.latitude, pos.coords.longitude]);
       if (first) { first = false; if (state.pendingRoute) { state.pendingRoute = false; traceRoute({ fit: true }); } else if (recenter) focusOn(state.me, 17); }
-    }, () => { stopWatch(); state.pendingRoute = false; toast('No se obtuvo GPS. Prueba «Simular en Plaza Che».', 4500); updateOriginHint(); }, { enableHighAccuracy: true, timeout: 15000 });
+    }, () => { stopWatch(); state.pendingRoute = false; toast('No se obtuvo GPS. Prueba «Simular en Plaza Che».', 4500); updateOriginHint(); }, { enableHighAccuracy: true, maximumAge: 2000, timeout: 15000 });
   }
   function simulateLocation() {
     stopWatch(); state.simulated = true; setMe(PLAZA_CHE); toast('Ubicación simulada en Plaza Che.');
     if (state.pendingRoute) { state.pendingRoute = false; traceRoute({ fit: true }); } else focusOn(PLAZA_CHE, 18);
   }
-  $('#btn-locate').addEventListener('click', () => { if (state.me && state.watchId !== null) { focusOn(state.me, 17); return; } toast('Buscando tu ubicación…', 2500); startLocate({ recenter: true }); });
+  $('#btn-locate').addEventListener('click', () => { if (state.me && state.watchId !== null) { focusOn(state.me, 18); return; } toast('Buscando tu ubicación…', 2500); startLocate({ recenter: true }); });
   $('#btn-sim').addEventListener('click', simulateLocation);
 
   let toastTimer;
   function toast(msg, ms = 3500) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), ms); }
 
+  /* ═════════════ Modo calibración oculto (?editar=1) ═════════════ */
+  if (location.search.includes('editar=1')) {
+    const box = document.createElement('div');
+    box.style.cssText = 'position:fixed;bottom:16px;left:16px;z-index:2000;background:#202124;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;max-width:320px;box-shadow:0 4px 16px rgba(0,0,0,.4);';
+    box.innerHTML = '<b>Modo calibración</b><br>Arrastra cada pin a su lugar exacto.<br><button id="copy-coords" style="margin-top:8px;background:#1a73e8;color:#fff;border:0;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:600;">Copiar coordenadas nuevas</button>';
+    document.body.appendChild(box);
+    PLACES.forEach(p => {
+      markers[p.id].options.draggable = true;
+      if (markers[p.id].dragging) markers[p.id].dragging.enable();
+      markers[p.id].on('dragend', e => {
+        const ll = e.target.getLatLng();
+        p.lat = Number(ll.lat.toFixed(6)); p.lng = Number(ll.lng.toFixed(6));
+        toast(`${p.short}: ${p.lat}, ${p.lng}`);
+      });
+    });
+    document.getElementById('copy-coords').onclick = () => {
+      const txt = PLACES.map(p => `${p.name} (${p.id}):\n  lat: ${p.lat}, lng: ${p.lng}`).join('\n\n');
+      navigator.clipboard.writeText(txt);
+      toast('¡Coordenadas copiadas al portapapeles!');
+    };
+  }
 
- renderChips(); renderMarkers(); renderResults(); syncLabels(); updateOffsets();
+  renderChips(); renderMarkers(); renderResults(); syncLabels(); updateOffsets();
 }
 
-// Carga Leaflet con respaldo automático de 3 servidores distintos
 (function loadLeaflet(urls) {
   if (typeof L !== 'undefined') { startApp(); return; }
   if (!urls.length) {
-    document.getElementById('map').innerHTML = '<div style="padding:120px 20px;text-align:center;color:#b91c1c;">No se pudo descargar Leaflet desde internet. Revisa tu conexión o bloqueadores de anuncios.</div>';
+    document.getElementById('map').innerHTML = '<div style="padding:120px 20px;text-align:center;color:#b91c1c;">No se pudo descargar Leaflet. Revisa tu conexión a internet.</div>';
     return;
   }
   var s = document.createElement('script');

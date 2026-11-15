@@ -13,7 +13,6 @@
   body{font-family:Roboto,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;overflow:hidden;background:#e5e3df;color:#202124;--controls-offset:0px}
   #map{position:fixed;inset:0;width:100%;height:100vh;height:100dvh;z-index:0;background:#e5e3df}
 
-  /* ── Barra superior y buscador ── */
   #topbar{position:fixed;top:12px;left:12px;right:12px;z-index:1100;pointer-events:none}
   @media (min-width:768px){#topbar{right:auto;width:400px}}
   .search-wrap{position:relative;pointer-events:auto;z-index:20}
@@ -36,7 +35,6 @@
   .chip svg{width:15px;height:15px}
   .chip[aria-pressed="true"]{background:#e8f0fe;color:#1967d2;border-color:#d2e3fc}
 
-  /* ── HUD de navegación en vivo (estilo Waze / Google Maps) ── */
   #nav-hud{position:fixed;top:12px;left:12px;right:12px;z-index:1150;background:#0f533a;color:#fff;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.35);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
   @media (min-width:768px){#nav-hud{left:50%;right:auto;transform:translateX(-50%);width:460px}}
   .nav-hud-top{display:flex;align-items:center;gap:12px}
@@ -52,7 +50,6 @@
   .btn-hud-sim{background:rgba(255,255,255,.2);color:#fff}
   .btn-hud-stop{background:#dc2626;color:#fff}
 
-  /* ── Controles flotantes ── */
   .leaflet-bottom.leaflet-right{bottom:var(--controls-offset);transition:bottom .3s ease}
   .leaflet-touch .leaflet-bar{border:0;box-shadow:0 2px 8px rgba(0,0,0,.28);border-radius:12px;overflow:hidden}
   .leaflet-touch .leaflet-bar a{width:42px;height:42px;line-height:42px;font-size:20px;color:#3c4043}
@@ -65,7 +62,6 @@
   .fab-pill{height:36px;padding:0 14px;border-radius:9999px;font-size:12px;font-weight:600;color:#1967d2}
   .fab-pill svg{width:15px;height:15px}
 
-  /* ── Marcadores ── */
   .pin-wrap{background:none;border:0}
   .pin{position:relative;width:32px;height:40px;cursor:pointer}
   .pin-head{width:32px;height:32px;border-radius:50%;background:var(--c);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;color:#fff;transition:transform .15s}
@@ -86,7 +82,6 @@
   .route-badge-inner{position:absolute;left:0;top:0;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:#1a73e8;color:#fff;font-size:12px;font-weight:600;padding:5px 10px;border-radius:9999px;box-shadow:0 2px 6px rgba(0,0,0,.35);border:2px solid #fff}
   .route-badge-inner svg{width:14px;height:14px}
 
-  /* ── Panel lateral / Bottom Sheet ── */
   #panel{position:fixed;z-index:1050;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.28);overflow-x:hidden;overflow-y:auto;visibility:hidden;transition:transform .3s ease,visibility 0s linear .3s}
   #panel.open{visibility:visible;transform:none;transition:transform .3s ease,visibility 0s}
   @media (min-width:768px){
@@ -98,11 +93,10 @@
     .sheet-handle{display:block;position:absolute;top:7px;left:50%;width:38px;height:4px;border-radius:2px;background:rgba(255,255,255,.85);transform:translateX(-50%);z-index:5}
   }
 
-  /* Foto de portada del lugar */
   .place-cover{position:relative;width:100%;height:145px;background:#1e293b;overflow:hidden}
   .place-cover img{width:100%;height:100%;object-fit:cover;display:block}
   .place-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),rgba(0,0,0,.15))}
-  .place-cover-tag{position:absolute;left:12px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;padding:4px 9px;border-radius:6px;backdrop-filter:blur(4px)}
+  .place-cover-tag{position:absolute;left:12px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;padding:4px 9px;border-radius:6px}
   .place-cover-gmaps{position:absolute;right:12px;bottom:10px;background:#fff;color:#1a73e8;font-size:11px;font-weight:700;padding:5px 10px;border-radius:9999px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
   .place-cover-gmaps svg{width:13px;height:13px}
 
@@ -161,9 +155,10 @@
 </head>
 <body>
 
-<div id="map"></div>
+<div id="map">
+  <div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#5f6368;font-size:14px;font-weight:500;">Cargando mapa del campus…</div>
+</div>
 
-<!-- HUD de navegación en vivo (Waze / Maps) -->
 <div id="nav-hud" hidden>
   <div class="nav-hud-top">
     <div class="nav-hud-ic" id="hud-icon"></div>
@@ -252,7 +247,7 @@ function startApp() {
   const H_PORT = 'Todos los días: 5:30 a. m. – 10:00 p. m.';
   const H_TM   = 'Todos los días: 4:30 a. m. – 11:00 p. m.';
 
-   const PLACES = [
+  const PLACES = [
     { id: 'edif-225', type: 'edificio', name: 'Edificio Rogelio Salmona (Posgrados)', short: 'Ed. 225 Salmona', code: 'Edificio 225 · Posgrados',
       lat: 4.633845, lng: -74.086373, wifi: true, access: true, hours: H_EDIF, photo: 'https://agenciadenoticias.unal.edu.co/fileadmin/Agencia_de_Noticias/Imagenes/2026/02-febrero/547/AgenciaUNAL-090226-01.jpg',
       desc: 'Edificio de Posgrados de Ciencias Humanas. Arquitectura icónica en ladrillo.',
@@ -560,7 +555,6 @@ function startApp() {
     else el.hidden = true;
   }
 
-  /* ═════════════ Enrutamiento directo en línea recta de punto a punto ═════════════ */
   function originLatLng(key) { return key === 'me' ? (state.me ? [state.me.lat, state.me.lng] : null) : (byId[key] ? [byId[key].lat, byId[key].lng] : null); }
 
   function requestRoute() {
@@ -618,7 +612,6 @@ function startApp() {
 
   function clearRoute() { routeLayer.clearLayers(); state.route = null; state.pendingRoute = false; showRouteResult(); }
 
-  /* ═════════════ Modo navegación en vivo en línea recta (tipo Waze) ═════════════ */
   function startLiveNav() {
     const dest = byId[state.selectedId];
     if (!dest || !state.route) return;
@@ -659,7 +652,6 @@ function startApp() {
 
   $('#btn-stop-nav').addEventListener('click', stopLiveNav);
 
-  // Simulador de caminata en línea recta paso a paso
   $('#btn-sim-walk').addEventListener('click', () => {
     if (state.simWalkTimer) {
       clearInterval(state.simWalkTimer); state.simWalkTimer = null;
@@ -695,7 +687,6 @@ function startApp() {
     }, 1000);
   });
 
-  /* ═════════════ Geolocalización ═════════════ */
   let meMarker = null;
   function setMe(ll) {
     state.me = { lat: ll.lat, lng: ll.lng };
@@ -732,7 +723,6 @@ function startApp() {
   let toastTimer;
   function toast(msg, ms = 3500) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), ms); }
 
-  /* ═════════════ Modo calibración oculto (?editar=1) ═════════════ */
   if (location.search.includes('editar=1')) {
     const box = document.createElement('div');
     box.style.cssText = 'position:fixed;bottom:16px;left:16px;z-index:2000;background:#202124;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;max-width:320px;box-shadow:0 4px 16px rgba(0,0,0,.4);';
@@ -760,13 +750,15 @@ function startApp() {
 (function loadLeaflet(urls) {
   if (typeof L !== 'undefined') { startApp(); return; }
   if (!urls.length) {
-    document.getElementById('map').innerHTML = '<div style="padding:120px 20px;text-align:center;color:#b91c1c;">No se pudo descargar Leaflet. Revisa tu conexión a internet.</div>';
+    document.getElementById('map').innerHTML = '<div style="padding:120px 20px;text-align:center;color:#b91c1c;">No se pudo descargar la librería del mapa. Revisa tu conexión a internet.</div>';
     return;
   }
+  var done = false;
   var s = document.createElement('script');
   s.src = urls[0];
-  s.onload = function() { startApp(); };
-  s.onerror = function() { loadLeaflet(urls.slice(1)); };
+  var timer = setTimeout(function() { if (!done) { done = true; loadLeaflet(urls.slice(1)); } }, 4000);
+  s.onload = function() { if (!done) { done = true; clearTimeout(timer); startApp(); } };
+  s.onerror = function() { if (!done) { done = true; clearTimeout(timer); loadLeaflet(urls.slice(1)); } };
   document.body.appendChild(s);
 })([
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',

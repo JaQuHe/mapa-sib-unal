@@ -200,50 +200,61 @@ function startApp() {
   const H_TM   = 'Todos los días: 4:30 a. m. – 11:00 p. m.';
 
   const PLACES = [
-    { id: 'edif-225', type: 'edificio', name: 'Edificio Rogelio Salmona', short: 'Ed. 225 Salmona', code: 'Edificio 225',
-      lat: 4.6357, lng: -74.0846, wifi: true, access: true, hours: H_EDIF,
-      desc: 'Sede de los posgrados de Ciencias Humanas. Arquitectura icónica en ladrillo junto al complejo de Humanas.',
+    // A. Edificios académicos
+    { id: 'edif-225', type: 'edificio', name: 'Edificio Rogelio Salmona (Posgrados)', short: 'Ed. 225 Salmona', code: 'Edificio 225 · Posgrados',
+      lat: 4.633845, lng: -74.086373, wifi: true, access: true, hours: H_EDIF,
+      desc: 'Edificio de Posgrados de Ciencias Humanas. Arquitectura icónica en ladrillo.',
       keywords: ['posgrados', 'ciencias humanas', 'ladrillo', 'salmona', '225'] },
     { id: 'edif-228', type: 'edificio', name: 'Nuevo Edificio de Enfermería', short: 'Ed. 228 Enfermería', code: 'Edificio 228',
-      lat: 4.6349, lng: -74.0837, wifi: true, access: true, hours: H_EDIF,
-      desc: 'Sede de la Facultad de Enfermería, con aulas y laboratorios modernos cerca del costado sur.',
+      lat: 4.635443, lng: -74.084831, wifi: true, access: true, hours: H_EDIF,
+      desc: 'Sede de la Facultad de Enfermería, con aulas y laboratorios modernos.',
       keywords: ['facultad', 'laboratorios', 'aulas', '228'] },
-    { id: 'edif-610', type: 'edificio', name: 'Edificio de Ciencia Política y Derecho', short: 'Ed. 610 Posgrados', code: 'Edificio 610 · Posgrados',
-      lat: 4.6393, lng: -74.0843, wifi: true, access: true, hours: H_EDIF,
-      desc: 'Aulas, auditorios y oficinas administrativas de posgrados en el sector norte-central del campus.',
-      keywords: ['derecho', 'politica', 'auditorios', 'oficinas', 'posgrados', '610'] },
-    { id: 'rolons', type: 'restaurante', name: 'Restaurante Rolons', short: 'Rolons', code: 'Sector Calle 45 · Externo',
-      lat: 4.6348, lng: -74.0793, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:00 p. m.',
-      desc: 'Restaurante tradicional en la zona comercial externa saliendo por la portería de la Calle 45.',
-      keywords: ['almuerzo', 'comida', 'calle 45'] },
-    { id: 'la-vecina', type: 'restaurante', name: 'Restaurante La Vecina', short: 'La Vecina', code: 'Sector Calle 45 · Externo',
-      lat: 4.6353, lng: -74.0789, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:30 p. m.',
-      desc: 'Opción clásica de almuerzos en el sector de Belalcázar / Calle 45 frente al campus.',
+    { id: 'edif-564', type: 'edificio', name: 'Edificio Gloria Galeano', short: 'Ed. 564 Gloria Galeano', code: 'Edificio 564',
+      lat: 4.636428, lng: -74.086760, wifi: true, access: true, hours: H_EDIF,
+      desc: 'Edificio académico y de investigación dentro del campus.',
+      keywords: ['gloria galeano', '564', 'ciencias', 'biologia'] },
+    { id: 'edif-610', type: 'edificio', name: 'Edificio de Ciencia Política y Derecho', short: 'Ed. 610 Ciencia Política', code: 'Edificio 610',
+      lat: 4.637809, lng: -74.080092, wifi: true, access: true, hours: H_EDIF,
+      desc: 'Aulas, auditorios y oficinas administrativas de Ciencia Política y Derecho.',
+      keywords: ['derecho', 'politica', 'auditorios', 'oficinas', '610'] },
+
+    // B. Gastronomía y puntos comerciales
+    { id: 'rolons', type: 'restaurante', name: 'Restaurante Rolons', short: 'Rolons', code: 'Sector Calle 26 · Externo',
+      lat: 4.631845, lng: -74.083622, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:00 p. m.',
+      desc: 'Restaurante tradicional en la zona externa cercana a la portería de la Calle 26.',
+      keywords: ['almuerzo', 'comida', 'calle 26'] },
+    { id: 'la-vecina', type: 'restaurante', name: 'Restaurante La Vecina', short: 'La Vecina', code: 'Sector Oriental · Externo',
+      lat: 4.634457, lng: -74.078858, price: PRICE_REST, hours: 'Lun – Sáb: 11:30 a. m. – 4:30 p. m.',
+      desc: 'Opción clásica de almuerzos en la zona comercial aledaña al costado oriental.',
       keywords: ['almuerzo', 'comida', 'belalcazar'] },
+    { id: 'punto-26', type: 'restaurante', name: 'Punto 26', short: 'Punto 26', code: 'Zona Comercial · Calle 26',
+      lat: 4.630554, lng: -74.083682, price: PRICE_REST, hours: 'Lun – Sáb: 8:00 a. m. – 7:00 p. m.',
+      desc: 'Punto de encuentro, comidas y servicios ubicado sobre el sector de la Calle 26.',
+      keywords: ['punto 26', 'calle 26', 'comida', 'almuerzo', 'comercio'] },
     { id: 'chazas', type: 'chaza', name: 'Zona de Chazas (Plaza Che)', short: 'Chazas · Plaza Che', code: 'Corredores internos y Plaza Central',
-      lat: 4.6362, lng: -74.0830, wifi: true, price: 'Precios económicos', hours: 'Lun – Vie: 7:00 a. m. – 6:00 p. m. (varía según el puesto)',
+      lat: 4.634903, lng: -74.081902, wifi: true, price: 'Precios económicos', hours: 'Lun – Vie: 7:00 a. m. – 6:00 p. m. (varía según el puesto)',
       desc: 'Puestos estudiantiles tradicionales dentro del campus. Variedad de snacks, café, almuerzos rápidos y artículos varios.',
       banner: 'Recuerda: existen múltiples chazas distribuidas en todos los corredores del campus, no solo en la Plaza Che.',
       keywords: ['plaza che', 'snacks', 'cafe', 'almuerzo', 'comida', 'economico'] },
+
+    // C. Porterías activas
     { id: 'ent-26', type: 'porteria', name: 'Entrada Calle 26', short: 'Portería Calle 26', code: 'Portería Sur · Av. El Dorado',
-      lat: 4.6336, lng: -74.0833, hours: H_PORT,
+      lat: 4.632385, lng: -74.084032, hours: H_PORT,
       desc: 'Acceso peatonal y vehicular sur con conexión directa a la Av. El Dorado.',
       keywords: ['el dorado', 'sur', 'vehicular', 'peatonal'] },
-    { id: 'ent-45', type: 'porteria', name: 'Entrada Calle 45', short: 'Portería Calle 45', code: 'Portería Oriental · Calle 45',
-      lat: 4.6352, lng: -74.0806, hours: H_PORT,
-      desc: 'Acceso peatonal oriental, conecta directamente con la zona comercial de la Calle 45.',
-      keywords: ['oriental', 'peatonal', 'restaurantes'] },
     { id: 'ent-30', type: 'porteria', name: 'Entrada Carrera 30 (NQS)', short: 'Portería Cra. 30', code: 'Portería Oriental · Av. NQS',
-      lat: 4.6382, lng: -74.0802, hours: H_PORT,
-      desc: 'Acceso peatonal oriental sobre la Av. NQS, frente a la estación de TransMilenio.',
+      lat: 4.634837, lng: -74.080119, hours: H_PORT,
+      desc: 'Acceso peatonal oriental sobre la Av. NQS.',
       keywords: ['nqs', 'oriental', 'peatonal', 'avenida'] },
+
+    // D. Estaciones de TransMilenio
     { id: 'tm-cu', type: 'transmilenio', name: 'Estación Ciudad Universitaria', short: 'TM Ciudad Univ.', code: 'Troncal Calle 26',
-      lat: 4.6327, lng: -74.0838, hours: H_TM,
+      lat: 4.631706, lng: -74.084099, hours: H_TM,
       desc: 'Estación sobre el separador de la Av. El Dorado, ideal para ingresar por la portería de la Calle 26.',
       keywords: ['calle 26', 'troncal', 'el dorado'] },
     { id: 'tm-un', type: 'transmilenio', name: 'Estación Universidad Nacional', short: 'TM Univ. Nacional', code: 'Troncal NQS / Carrera 30',
-      lat: 4.6378, lng: -74.0796, hours: H_TM,
-      desc: 'Estación sobre el separador de la Av. NQS, ideal para ingresar por Carrera 30 o Calle 45.',
+      lat: 4.635435, lng: -74.079373, hours: H_TM,
+      desc: 'Estación sobre el separador de la Av. NQS, ideal para ingresar por la portería de la Carrera 30.',
       keywords: ['nqs', 'carrera 30', 'troncal'] }
   ];
 
@@ -499,27 +510,7 @@ function startApp() {
   let toastTimer;
   function toast(msg, ms = 3500) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), ms); }
 
- if (location.search.includes('editar=1')) {
-  const box = document.createElement('div');
-  box.style.cssText = 'position:fixed;bottom:16px;left:16px;z-index:2000;background:#202124;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;max-width:320px;box-shadow:0 4px 16px rgba(0,0,0,.4);';
-  box.innerHTML = '<b>Modo calibración</b><br>Arrastra cada pin a su lugar exacto.<br><button id="copy-coords" style="margin-top:8px;background:#1a73e8;color:#fff;border:0;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:600;">Copiar coordenadas nuevas</button>';
-  document.body.appendChild(box);
-  PLACES.forEach(p => {
-    markers[p.id].options.draggable = true;
-    if (markers[p.id].dragging) markers[p.id].dragging.enable();
-    markers[p.id].on('dragend', e => {
-      const ll = e.target.getLatLng();
-      p.lat = Number(ll.lat.toFixed(6));
-      p.lng = Number(ll.lng.toFixed(6));
-      toast(`${p.short}: ${p.lat}, ${p.lng}`);
-    });
-  });
-  document.getElementById('copy-coords').onclick = () => {
-    const txt = PLACES.map(p => `${p.name} (${p.id}):\n  lat: ${p.lat}, lng: ${p.lng}`).join('\n\n');
-    navigator.clipboard.writeText(txt);
-    toast('¡Coordenadas copiadas al portapapeles!');
-  };
-}
+
  renderChips(); renderMarkers(); renderResults(); syncLabels(); updateOffsets();
 }
 
